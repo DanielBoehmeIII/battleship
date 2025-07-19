@@ -1,0 +1,61 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "A battleship game",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "webpack serve --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --config webpack.dev.js",
+    "bg-dev": "nohup npm run dev > dev.log 2>&1 &",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "watch": "jest --watch *.js",
+    "predeploy": "npm run build",
+    "deploy-all": "npm run build && git add . && git commit -m \"Deploy build\" && git push origin main && npm run ghpages-deploy",
+    "ghpages-deploy": "gh-pages -d dist",
+    "analyze": "webpack --config webpack.prod.js --profile --json > stats.json && npx webpack-bundle-analyzer stats.json",
+    "fix-pages": "git checkout -B gh-pages && git rm -rf . && git clean -fdx && git checkout main -- dist && mv dist/* ./ && rmdir dist && git add . && git commit -m \"Clean gh-pages: deploy only dist files\" && git push origin gh-pages --force",
+    "clean-cache": "rm -rf node_modules package-lock.json && npm cache clean --force && npm run install-dependencies",
+    "install-dependencies": "npm install -D jest babel-jest @babel/core @babel/preset-env node-localstorage css-loader csv-loader gh-pages globals html-loader html-webpack-plugin style-loader webpack-cli webpack-dev-server webpack-merge webpack",
+    "pagesclean": "git checkout gh-pages && rm -rf * && cp -r dist/* . && git add . && git commit -m \"Deploy\" && git push origin gh-pages --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanielBoehmeIII/battleship.git"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ]
+  },
+  "author": "Daniel Boehme",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "babel-jest": "^30.0.4",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "csv-loader": "^3.0.5",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.3.0",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "jsdom": "^26.1.0",
+    "node-localstorage": "^3.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "webpack-copy-plugin": "^0.0.4"
+  }
+}

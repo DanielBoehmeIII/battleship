@@ -1,0 +1,679 @@
+/** radar css borrowed from "https://codepen.io/thebabydino/pen/AqbWeE" **/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* http://meyerweb.com/eric/tools/css/reset/ */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --bg-color: #113344;
+  --header-color: floralwhite;
+  --detail-color: white;
+  --text-color: linear-gradient(
+    to right,
+    var(--heat-value) 0%,
+    var(--cool-value) 100%
+  );
+  --secondary-color: rgba(255, 255, 255, 1);
+  --cool-gradient: linear-gradient(to right, #30cfd0 0%, #330867 100%);
+  --adaptive-color: rgba(255, 255, 255, 0);
+  --bg-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to top, #000000 0%, #232023 100%);
+}
+
+#content-div {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5% 95%;
+  overflow: hidden;
+}
+
+#header {
+  grid-row: 1 / 2;
+}
+
+#main-content-div {
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 100%;
+}
+
+#display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 60%;
+  font:
+    3rem Inconsolata,
+    monospace;
+  text-shadow: 0 0 5px #c8c8c8;
+
+  /* Screen appearance */
+  background: linear-gradient(to top, #222, #444);
+  border: 1rem solid #111; /* thick dark frame */
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  /* box-shadow: */
+  /*   inset 0 0 20px rgba(0, 255, 0, 0.3), */
+  /*   0 0 30px rgba(0, 0, 0, 0.7), */
+  /*   0 0 10px rgba(0, 255, 0, 0.2); */
+  /**/
+  /* Optional: slight reflection overlay using pseudo-element if desired later */
+}
+
+#terminal {
+  position: relative; /* add this */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 30%;
+  background:
+    radial-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 12%, 1)),
+    linear-gradient(90deg, green 1px, transparent 1px),
+    linear-gradient(dimgrey 1px, grey 1px);
+  background-size:
+    100%,
+    2px 1px,
+    1px 2px;
+  color: white;
+  font:
+    1.3rem Inconsolata,
+    monospace;
+  text-shadow: 0 0 5px #c8c8c8;
+}
+
+#terminal::after {
+  content: "";
+  position: absolute; /* change from relative to absolute */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* set above default content */
+
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+#terminal-span {
+  position: relative; /* needed for z-index to apply */
+  width: 100%;
+  z-index: 0;
+}
+
+#terminal-span span {
+  display: block;
+}
+
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  width: 100%;
+  height: 20%;
+  background:
+    radial-gradient(hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 1)),
+    linear-gradient(90deg, dimgrey 1px, transparent 1px),
+    linear-gradient(dimgrey 1px, grey 1px);
+  background-size:
+    100%,
+    2px 1px,
+    1px 2px;
+}
+
+#sonar {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  position: relative;
+  width: 30rem;
+  height: 7.5rem;
+  border-radius: 2rem;
+  background-color: black;
+  overflow: hidden;
+  color: greenyellow;
+  font:
+    3rem Inconsolata,
+    monospace;
+  text-shadow: 0 0 5px #c8c8c8;
+  box-shadow:
+    0 0 0 1px hsla(0, 0%, 0%, 0.5),
+    inset 0 0 0 1px hsla(0, 0%, 100%, 0.15);
+  background:
+    repeating-radial-gradient(
+      at center bottom,
+      transparent 0 23px,
+      #287a33 24px 26px,
+      transparent 27px
+    ),
+    linear-gradient(transparent 49.75%, #0e4c42 0 50.25%, transparent 0) 50%
+      no-repeat,
+    linear-gradient(90deg, transparent 49.75%, #0e4c42 0 50.25%, transparent 0)
+      50% no-repeat,
+    linear-gradient(#333, #111);
+  background-size:
+    cover,
+    218px 218px,
+    218px 218px,
+    100%;
+}
+
+#sonar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55rem;
+  height: 14rem;
+  border-radius: 2rem;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+#sonar-sweep {
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* start at center horizontally */
+  width: 0%;
+  height: 0%;
+  background: radial-gradient(
+    ellipse at center bottom,
+    hsla(145, 50%, 40%, 0.7),
+    rgba(0, 0, 0, 0) 70%
+  );
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+  opacity: 0;
+  /* background-color: red; */
+}
+
+.sonar-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 50%;
+  width: 40%; /* adjusted for sonar dot size */
+  height: 40%;
+  background: radial-gradient(circle, limegreen 0%, green 70%, darkgreen 100%);
+  box-shadow: 0 0 8px 2px limegreen;
+  opacity: 0;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.sonar-dot[highlighted="true"] {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes linear-sweep {
+  0% {
+    width: 0%;
+    height: 0%;
+    opacity: 1;
+  }
+  100% {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+  }
+}
+
+#radar-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#radar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* make ::after position relative to this */
+  overflow: hidden;
+  margin: -117px;
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px hsla(0, 0%, 0%, 0.5),
+    inset 0 0 0 1px hsla(0, 0%, 100%, 0.15);
+  background:
+    repeating-radial-gradient(
+      transparent 0 23px,
+      #287a33 24px 26px,
+      #0000 27px
+    ),
+    linear-gradient(transparent 49.75%, #0e4c42 0 50.25%, transparent 0) 50%
+      no-repeat,
+    linear-gradient(90deg, transparent 49.75%, #0e4c42 0 50.25%, transparent 0)
+      50% no-repeat,
+    linear-gradient(#333, #111);
+  background-size:
+    100%,
+    218px 218px,
+    218px 218px,
+    100%;
+}
+
+#radar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+#radar-dot-div {
+  display: grid;
+  grid-template-columns: repeat(10, 0.7fr);
+  grid-template-rows: repeat(10, 0.7fr);
+  width: 70%;
+  height: 70%;
+}
+
+.radar-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 50%;
+  width: 60%; /* smaller for radar dot look */
+  height: 60%;
+  background-color: limegreen; /* brighter radar green */
+  box-shadow: 0 0 8px 2px limegreen; /* glow effect */
+  opacity: 0;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.radar-dot[highlighted="true"] {
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+::selection {
+  background: #dddddd;
+  text-shadow: none;
+}
+
+#radar-sweep {
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  box-sizing: border-box;
+  border-right: solid 1px hsla(145, 50%, 40%, 0.3);
+  width: 108px;
+  height: 108px;
+  border-radius: 100% 0 0 0;
+  transform: translate(-100%, -100%) rotate(0deg);
+  transform-origin: 100% 100%;
+  background: linear-gradient(
+    50deg,
+    rgba(34, 34, 34, 0) 56%,
+    hsla(145, 50%, 40%, 1)
+  );
+  animation: radial-sweep 5s infinite linear;
+}
+
+@keyframes radial-sweep {
+  to {
+    transform: translate(-100%, -100%) rotate(360deg);
+  }
+}
+
+#type-prompt {
+  font-size: 4rem;
+}
+
+#place-fleet {
+  padding: 0; /* Fixed invalid padding */
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+#quick-deploy {
+  padding-bottom: 3rem;
+  text-align: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+#analog {
+  width: 100%;
+  height: 20%;
+  background-color: red;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.player-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 45%;
+  height: 100%;
+}
+
+.board {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+}
+
+.board-row {
+  display: flex; /* THIS fixes squares layout horizontally */
+  width: calc(2.2 rem * 10);
+  height: 10%; /* 10 rows = 10% height each */
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 2.2rem; /* each square is 10% of board width */
+  height: 2.2rem;
+  outline: 0.1rem solid black;
+  transition: shake 0.2s ease-in-out;
+  animation-fill-mode: both;
+  z-index: 2;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.ship-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.ship-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: visible;
+  mix-blend-mode: multiply;
+  z-index: 1;
+  /* outline: 2px solid red; */
+}
+
+.ship-img {
+  pointer-events: none !important;
+}
+
+.ship-img[player-ship="false"] {
+  opacity: 0;
+}
+
+#player-carrier {
+  outline: 3px solid transparent;
+}
+
+#player-submarine {
+  outline: 3px solid transparent;
+}
+
+#player-destroyer {
+  outline: 3px solid transparent;
+}
+
+#player-cruiser {
+  outline: 3px solid transparent;
+}
+
+#player-battleship {
+  outline: 3px solid transparent;
+}
+
+.square[toggled="true"] {
+  background-image: src(
+    "https://lapsedtime.com/wp-content/uploads/2016/03/water.gif"
+  );
+  background-position: cover;
+  background-blend-mode: multiply;
+}
+
+#toggle-x {
+  position: absolute;
+  object-fit: contain;
+  font-size: 2rem;
+  color: maroon;
+}
+
+#toggle-bomb {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  background-image: url("../assets/png/bomb.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  mix-blend-mode: overlay; /* blend with backdrop */
+  opacity: 0.8;
+}
+
+#ship-select-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+/* .ship-select { */
+/*   width: 100%; */
+/*   height: 100%; */
+/*   display: block; */
+/*   z-index: 1; */
+/* } */
+/**/
+.ship-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+  width: 10%;
+  overflow: visible;
+  mix-blend-mode: multiply;
+  /* outline: 2px solid red; */
+}
