@@ -153,8 +153,7 @@ export async function runTerminal(strings, imgSrcs) {
       const imgElement = document.createElement("img");
       imgElement.id = `${imgSrc}-select`;
       imgElement.classList.add("ship-select");
-      imgElement.src =
-        __webpack_public_path__ + "assets/jpg/" + imgSrc + ".jpg";
+      imgElement.src = `assets/jpg/${imgSrc}.jpg`;
       imgContainer.appendChild(imgElement);
 
       await delay(100);
@@ -197,7 +196,7 @@ export function displayShip(player, ship) {
   shipElement.classList.add("ship-div");
   shipElement.id = `${player.bot ? "bot" : "player"}-${ship.type}`;
   const shipImg = document.createElement("img");
-  shipImg.src = __webpack_public_path__ + "assets/jpg/" + imgSrc + ".jpg";
+  shipImg.src = `assets/jpg/${ship.type}.jpg`;
   shipImg.classList.add("ship-img");
   shipImg.setAttribute("player-ship", `${player.bot ? "false" : "true"}`);
 
