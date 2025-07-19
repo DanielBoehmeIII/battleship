@@ -197,7 +197,7 @@ export function displayShip(player, ship) {
   shipElement.classList.add("ship-div");
   shipElement.id = `${player.bot ? "bot" : "player"}-${ship.type}`;
   const shipImg = document.createElement("img");
-  const name = `./assets/jpg/${ship.type}.jpg`;
+  const name = `/assets/jpg/${ship.type}.jpg`;
   shipImg.src = name;
   shipImg.classList.add("ship-img");
   shipImg.setAttribute("player-ship", `${player.bot ? "false" : "true"}`);
