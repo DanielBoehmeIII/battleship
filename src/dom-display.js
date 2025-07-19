@@ -153,7 +153,8 @@ export async function runTerminal(strings, imgSrcs) {
       const imgElement = document.createElement("img");
       imgElement.id = `${imgSrc}-select`;
       imgElement.classList.add("ship-select");
-      imgElement.src = `../assets/jpg/${imgSrc}.jpg`;
+      imgElement.src =
+        __webpack_public_path__ + "assets/jpg/" + imgSrc + ".jpg";
       imgContainer.appendChild(imgElement);
 
       await delay(100);
