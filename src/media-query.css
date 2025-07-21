@@ -21,6 +21,7 @@
   #content-div {
     width: 100vw;
     height: 120vh;
+    font-size: 25%;
     flex-grow: 0;
   }
 
@@ -45,7 +46,7 @@
     align-items: center;
     flex-direction: column;
     width: 50%;
-    height: 50%;
+    height: 70%;
     padding: 1rem;
     overflow: hidden;
   }
