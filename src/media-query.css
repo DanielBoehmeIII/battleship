@@ -110,5 +110,6 @@
 
   #terminal-span {
     flex-grow: 0;
+    overflow: hidden;
   }
 }
