@@ -224,6 +224,7 @@ body {
     1.3rem Inconsolata,
     monospace;
   text-shadow: 0 0 5px #c8c8c8;
+  overflow: hidden;
 }
 
 #terminal::after {
