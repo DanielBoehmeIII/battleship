@@ -1,4 +1,4 @@
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   html {
     font-size: 50%; /* Reduces all rem-based font sizes to 75% of the default */
   }
@@ -12,7 +12,7 @@
 
   #content-div {
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
     flex-grow: 0;
   }
 
