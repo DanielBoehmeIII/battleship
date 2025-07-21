@@ -13,10 +13,16 @@
   #content-div {
     width: 100vw;
     height: 100vh;
+    flex-grow: 0;
+  }
+
+  #controls {
+    flex-shrink: 0;
   }
 
   #main-content-div {
     width: 97%;
+    flex-grow: 0;
   }
 
   #display {
@@ -32,12 +38,12 @@
   #radar-div {
     padding: 0.1rem;
     width: 30%;
-    height: 80%;
+    height: 75%;
   }
 
   #radar {
     width: 100%;
-    height: 100%;
+    height: 90%;
     border-radius: 50%;
     box-shadow:
       0 0 0 1px hsla(0, 0%, 0%, 0.5),
@@ -80,5 +86,13 @@
       transparent 1px,
       transparent 2px
     );
+  }
+
+  #terminal {
+    flex: 0 0 auto;
+  }
+
+  #terminal-span {
+    flex-grow: 0;
   }
 }
