@@ -16,7 +16,6 @@
     margin: 0;
     box-sizing: border-box;
     user-select: none;
-    color: red;
   }
 
   #content-div {
@@ -48,6 +47,7 @@
     width: 50%;
     height: 50%;
     padding: 1rem;
+    overflow: hidden;
   }
 
   .board {
