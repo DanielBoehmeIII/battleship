@@ -449,10 +449,10 @@ body {
   align-items: center;
   position: relative;
   border-radius: 50%;
-  width: 60%; /* smaller for radar dot look */
-  height: 60%;
-  background-color: limegreen; /* brighter radar green */
-  box-shadow: 0 0 8px 2px limegreen; /* glow effect */
+  width: 80%; /* adjusted for sonar dot size */
+  height: 80%;
+  background: radial-gradient(circle, limegreen 0%, green 70%, darkgreen 100%);
+  box-shadow: 0 0 8px 2px limegreen;
   opacity: 0;
   transition:
     opacity 0.5s ease,
